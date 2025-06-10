@@ -1,0 +1,19 @@
+-- day 2
+-- constraint
+
+create table student(
+id int primary key,
+first_name varchar(20) not null,
+last_name char(1) not null,
+mail varchar(20) unique,
+age int check(age>=18),
+dept char(4) default 'CS'
+);
+
+
+insert into student values
+(1, 'Siva', 'S', 'siva@gmail.com', 20, 'IT'),
+(2, 'Murugan', 'S', 'murugan@gmail.com', 18, 'IT'),
+(3, 'John', 'J', 'john@gmail.com', 19, 'MECH');
+
+select * from student;
