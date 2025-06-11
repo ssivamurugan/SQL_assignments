@@ -1,0 +1,48 @@
+-- day 3
+-- many to many relationship
+
+create table student(
+student_id int,
+name varchar(20),
+email varchar(30),
+primary key(student_id)
+);
+
+create table course(
+course_id int,
+course_name varchar(20),
+duration varchar(20),
+primary key(course_id)
+);
+
+create table enrollment(
+enrollment_id int,
+student_id int,
+course_id int,
+enrollment_date date,
+primary key(enrollment_id, student_id, course_id),
+foreign key(student_id) references student(student_id),
+foreign key(course_id) references course(course_id)
+);
+
+INSERT INTO Student (student_id, name, email) VALUES
+(1, 'Alice', 'alice@example.com'),
+(2, 'Bob', 'bob@example.com'),
+(3, 'Charlie', 'charlie@example.com');
+
+INSERT INTO Course (course_id, course_name, duration) VALUES
+(101, 'Mathematics', '3 months'),
+(102, 'Physics', '4 months'),
+(103, 'Computer Science', '6 months');
+
+INSERT INTO Enrollment (enrollment_id, student_id, course_id, enrollment_date) VALUES
+(1, 1, 101, '2024-06-01'),
+(2, 1, 102, '2024-06-02'),
+(3, 2, 101, '2024-06-01'),
+(4, 3, 103, '2024-06-03'),
+(5, 2, 103, '2024-06-04');
+
+
+select * from student;
+select * from course;
+select * from enrollment;

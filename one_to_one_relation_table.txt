@@ -1,0 +1,31 @@
+-- day 3
+-- one to one relationship
+
+create table person(
+person_id int primary key,
+name varchar(20) not null,
+dob date
+);
+
+create table passport(
+passport_id int primary key,
+passport_number varchar(20) not null,
+issue_date date,
+person_id int,
+foreign key(person_id) references person(person_id)
+);
+
+insert into person values
+(201, 'John', date("2001-03-11")),
+(202, 'Ruban', "1998-08-17"),
+(203, 'Jerald', date("1995-09-14")),
+(207, 'Albert', date("1991-02-12"));
+
+insert into passport values
+(442, '2345AXN34R', date("2004-01-23"), 201),
+(115, '489XCV34UR', date("2005-09-10"), 202),
+(117, '689HJK648Y', date("2009-06-13"), 203),
+(119, '893KLI789W', date("2006-04-20"), 207);
+
+select * from person;
+select * from passport;
