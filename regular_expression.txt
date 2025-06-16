@@ -1,0 +1,71 @@
+-- day 5
+-- regular expression
+
+CREATE TABLE Employee (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    email VARCHAR(50),
+    department VARCHAR(30)
+);
+
+INSERT INTO Employee (emp_id, name, email, department) VALUES
+(1, 'Alice Johnson', 'alice.johnson@gmail.com', 'HR'),
+(2, 'Bob Smith', 'bob_smith@yahoo.com', 'Finance'),
+(3, 'Charlie King', 'charlie123@company.com', 'HR'),
+(4, 'David Thomson', 'david.t@gmail.com', 'IT'),
+(5, 'Eva', 'eva@company.com', 'Finance'),
+(6, 'Don', 'don_007@gmail.com', 'Sales'),
+(7, 'Elliott', 'elliott.w@company.com', 'IT'),
+(8, 'Ross', 'ross@xyz.com', 'HR'),
+(9, 'Tina', 'tina123@company.com', 'Marketing'),
+(10, 'Mark99', 'mark99@gmail.com', 'Admin');
+
+-- Find employees whose name starts with a capital 'A'
+
+select * from Employee
+where name regexp '^a';
+
+-- Find employees whose name ends with ‘son’
+
+select * from Employee
+where name regexp 'son$';
+
+-- Find emails containing digits
+
+select * from Employee
+where email regexp '[0-9]';
+
+-- Find names that start with 'D' or 'E'
+
+select * from Employee
+where name regexp '^[D|E]';
+
+-- Find emails that use underscore _
+
+select * from Employee
+where email regexp '_';
+
+-- Find employees whose name has exactly 6 letters
+
+select * from Employee
+where name regexp '^[a-z|A-Z]{6}$';
+
+-- Find employees whose name contains double letters (like ‘ss’, ‘tt’, ‘ll’)
+
+select * from employee
+where name regexp 'll|ss|tt';
+
+-- Find names where the second letter is ‘o’
+
+select * from employee
+where name regexp '^.o';
+
+-- Find employees whose name contains only letters
+
+select * from employee
+where name regexp '^[A-Za-z]+$';
+
+-- Find emails ending with @gmail.com or @yahoo.com
+
+select * from employee
+where email regexp '(@gmail.com|@yahoo.com)$';
