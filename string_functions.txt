@@ -1,0 +1,82 @@
+-- day 5
+-- commonly used string functions
+
+CREATE TABLE Users (
+    user_id INT PRIMARY KEY,
+    full_name VARCHAR(50),
+    username VARCHAR(30),
+    email VARCHAR(50),
+    bio VARCHAR(100)
+);
+
+INSERT INTO Users VALUES
+(1, 'Alice Johnson', 'AliceJ', 'alice.j@gmail.com', '  Loves SQL and data.  '),
+(2, 'BOB smith', 'Bob_1995', 'BOB.SMITH@YAHOO.COM', 'Data Analyst at Tech.'),
+(3, ' charlie Brown ', '  Charlie  ', 'charlie_b@company.com', '  Full Stack Dev  '),
+(4, 'David    Lee', 'DavidL', 'david.lee@outlook.com', 'Senior Developer'),
+(5, 'EVA', NULL, NULL, '    '),
+(6, '  mark Dsouza', 'mark99', 'mark99@gmail.com', 'Loves coding in Java.');
+
+-- 1.Display all usernames in uppercase.
+select upper(username) from Users;
+
+-- 2.Show all emails in lowercase.
+select lower(email) from users;
+
+-- 3.Convert full names to lowercase where user_id is even.
+select lower(full_name) from users;
+
+-- 4.Show the first 5 characters of each full_name.
+select substr(full_name, 1, 5) from users;
+
+-- 5.Display the last 4 characters of each email.
+select substr(full_name, length(full_name)-4, 4) from users;
+
+-- 6.Extract the domain part from the email (after @).
+select substr(email, instr(email, '@')+1) from users;
+
+-- 7.Find the position of '@' in every email.
+select instr(email, '@') from users;
+
+-- 8.Show usernames that contain an underscore _.
+select username from users
+where instr(username, '_')>0;
+
+-- 9.Display full name and username as one column like Alice Johnson (AliceJ).
+select concat(full_name, '(', username, ')') from users;
+
+-- 10.Combine email and bio into one string for each user.
+select concat(email, bio) from users;
+
+-- 11.Replace all dots . in email with hyphens -.
+select replace(email, '.', '-') from users;
+
+-- 12.Replace spaces in usernames with underscores.
+select replace(username, ' ', '_') from users;
+
+-- 13.Show length of each full name.
+select length(username) from users;
+
+-- 14.Find users whose bio is longer than 20 characters.
+select * from users
+where length(bio)>20;
+
+-- 15.Display usernames with leading/trailing spaces removed.
+select ltrim(rtrim(username)) from users;
+
+-- 16.Trim spaces from both ends of the full_name column.
+select ltrim(rtrim(full_name)) from users;
+
+-- 17.Trim only leading spaces from full_name.
+select ltrim(full_name) from users;
+
+-- 18.Trim only trailing spaces from bio.
+select rtrim(bio) from users;
+
+-- 19.Remove the leading A from name who's name starts with A
+select trim(leading 'A' from username) from users
+where username like 'A%';
+
+-- 20.Remove the trailing a from full_name who's name ends with a
+select trim(trailing 'a' from full_name) from users
+where full_name like '%a';
