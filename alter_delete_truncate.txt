@@ -1,0 +1,88 @@
+-- day 6
+-- QUERIES ON ALTER, UPDATE, DELETE AND TRUNCATE
+
+CREATE TABLE Employee (
+    emp_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    department VARCHAR(30),
+    salary DECIMAL(10, 2)
+);
+
+INSERT INTO Employee VALUES
+(1, 'Alice', 'HR', 50000.00),
+(2, 'Bob', 'IT', 60000.00),
+(3, 'Charlie', 'Finance', 55000.00),
+(4, 'David', 'IT', 62000.00),
+(5, 'Eva', 'HR', 48000.00);
+
+desc Employee;
+
+-- 1.Add a new column called email to the Employee table.
+alter table Employee
+add email VARCHAR(30);
+
+
+-- 2.Modify the salary column to allow 3 decimal places instead of 2.
+alter table Employee
+modify salary DECIMAL(10, 3);
+
+-- 3.Rename the column name to full_name.
+alter table Employee
+rename column name to full_name;
+
+-- 4.Drop the email column from the table.
+alter table Employee
+drop email;
+
+-- 5.Change the datatype of department from VARCHAR(30) to VARCHAR(50).
+alter table Employee
+modify department VARCHAR(50);
+
+-- 6.Increase the salary of all employees in the IT department by 10%.
+select * from employee;
+update employee set salary= salary+(salary*10/100)
+where department='IT';
+
+
+-- 7.Change the department of employee Charlie to Accounts.
+
+Update employee set department='Accounts'
+where full_name='Charlie';
+
+-- 8.Set the salary of employees in the HR department to 52000.
+Update employee set salary=52000
+where department='HR';
+
+-- 9.Update the name of employee with ID 5 to 'Evelyn'.
+Update employee set full_name='Evelyn'
+where emp_id=5;
+
+-- 10.Set the salary to NULL for any employee earning more than 60000.
+Update employee set salary=NULL
+where salary>60000;
+
+-- 11.Delete the record of employee with ID 4.
+Delete from employee
+where emp_id=4;
+
+-- 12.Delete all employees in the Finance department.
+delete from employee
+where department='Finance';
+
+-- 13.Delete employees who earn less than 50000.
+Delete from employee
+where salary<50000;
+
+-- 14.Delete all employees whose names start with 'A'.
+delete from employee
+where full_name like 'A%';
+select * from employee;
+
+-- 15.rename the table to Emp
+alter table employee
+rename to Emp;
+
+-- 16.remove all record from table and maitain structure
+TRUNCATE table Emp;
+
+desc Emp;
