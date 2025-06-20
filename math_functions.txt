@@ -1,0 +1,52 @@
+-- day 7
+-- math functions
+
+CREATE TABLE Sales (
+    sale_id INT PRIMARY KEY,
+    product_name VARCHAR(50),
+    unit_price DECIMAL(10, 4),
+    quantity INT
+);
+
+INSERT INTO Sales VALUES
+(1, 'Laptop', 78999.5678, 2),
+(2, 'Phone', 25999.4999, 3),
+(3, 'Monitor', 13999.9345, 1),
+(4, 'Keyboard', 1499.99, 5),
+(5, 'Mouse', 799.25, 4),
+(6, 'Charger', 1099.7599, 6);
+
+-- 1.Show the unit price of all products rounded to 2 decimal places.
+select Round(unit_price, 2) from sales;
+
+-- 2.Round the total sale amount (unit_price × quantity) to nearest whole number.
+select round(unit_price*quantity, -1) from sales;
+
+-- 3.Round unit prices to 0 decimal places and show the difference from actual price.
+select unit_price, round(unit_price, -1) as whole_price from sales;
+
+-- 4.Display sale IDs where quantity MOD 2 = 0 (even quantity).
+select sale_id from sales
+where mod(quantity, 2) = 0;
+
+-- 5.Find all products where total amount (unit_price × quantity) is divisible by 5.
+select * from sales
+where mod(unit_price * quantity, 5)=0;
+
+-- 6.Show the ceiling value of each unit price.
+select CEIL(unit_price) from sales;
+
+-- 7.Show CEIL(unit_price * quantity) for each product.
+select CEIL(unit_price * quantity) from sales;
+
+-- 8.Show the floor value of each unit price.
+select floor(unit_price) from sales;
+
+-- 9.Display the total amount using FLOOR(unit_price × quantity).
+select floor(unit_price * quantity) from sales;
+
+-- 10.Truncate unit prices to 2 decimal places (no rounding).
+select truncate(unit_price, 2) from sales;
+
+-- 11.Show total amount (unit_price × quantity) truncated to the nearest integer.
+select truncate(unit_price * quantity, -1) from sales;
